@@ -1,0 +1,54 @@
+﻿@using la_mia_pizzeria_crud_webapi.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model la_mia_pizzeria_crud_webapi.Models.PizzaCategories
+
+@{
+}
+
+<div>
+    <form method="post" asp-action="Create">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label asp-for="Pizza.Name" for="name" class="form-label">Nome</label>
+            <input asp-for="Pizza.Name" type="text" class="form-control" id="name">
+            <span class="text-danger" asp-validation-for="Pizza.Name"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Pizza.Description" for="description" class="form-label">Descrizione</label>
+            <textarea asp-for="Pizza.Description" class="form-control" id="description"></textarea>
+            <span class="text-danger" asp-validation-for="Pizza.Description"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Pizza.Image" for="image" class="form-label">Immagine</label>
+            <input asp-for="Pizza.Image" type="text" class="form-control" id="image">
+            <span class="text-danger" asp-validation-for="Pizza.Image"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Pizza.Price" for="price" class="form-label">Prezzo</label>
+            <input asp-for="Pizza.Price" type="number" class="form-control" id="price" step=".01">
+            <span class="text-danger" asp-validation-for="Pizza.Price"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Pizza.CategoryId" for="categories" class="form-label">Categoria</label>
+            <select id="categories" asp-for="Pizza.CategoryId" class="d-block w-100">
+                
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+
+            </select>
+            <span class="text-danger" asp-validation-for="Pizza.CategoryId"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="SelectedIngredients" for="ingredients" class="form-label">Ingredienti</label>
+            <select id="ingredients" multiple="multiple" asp-for="SelectedIngredients" class="form-control mb-2 mr-sm-2 ml-sm-3 leftList">
+                @foreach(Ingredient ingredient in Model.Ingredients)
+                {
+                    <option value="@ingredient.Id">@ingredient.Name</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
