@@ -48,3 +48,15 @@
         </table>
     }
 </div>
+
+<script type="text/javascript">
+    let pizzas;
+    axios.get("api/home/get")
+        .then(response => {
+            pizzas = response.data;
+            console.log(pizzas);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+</script>
