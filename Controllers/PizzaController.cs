@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace la_mia_pizzeria_crud_webapi.Controllers;
 
+[Authorize]
 public class PizzaController : Controller
 {
     [HttpGet]
